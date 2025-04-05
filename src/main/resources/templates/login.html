@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/login.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Your Project</h1>
+			</div>
+			<div th:replace="fragments/menu :: menu"></div>
+		</header>
+
+		<section class="login-container">
+			<div class="login-form">
+				<h2>Login</h2>
+				<form action="#" method="POST">
+					<div class="input-group">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Enter your email"
+							required
+						/>
+					</div>
+					<div class="input-group">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Enter your password"
+							required
+						/>
+					</div>
+					<div class="form-footer">
+						<button type="submit" class="btn">Login</button>
+						<p>
+							Don't have an account?
+							<a href="register.html">Register</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+	</body>
+</html>

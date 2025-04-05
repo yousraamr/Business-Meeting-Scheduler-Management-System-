@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Schedule Dashboard - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/schedule.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Your Project</h1>
+			</div>
+			<div th:replace="fragments/menu :: menu"></div>
+		</header>
+
+		<div class="schedule-container">
+			<div class="schedule-sidebar">
+				<button id="add-meeting-btn" class="btn">Add Meeting</button>
+				<h3>Scheduled Meetings</h3>
+				<div class="meetings-list">
+					<div class="meeting-item">
+						<p><strong>Meeting 1:</strong> Project Kickoff</p>
+						<p><strong>Date:</strong> April 1, 2025 - 10:00 AM</p>
+						<button class="btn small-btn">Edit</button>
+						<button class="btn small-btn">Delete</button>
+					</div>
+					<div class="meeting-item">
+						<p><strong>Meeting 2:</strong> Team Sync</p>
+						<p><strong>Date:</strong> April 2, 2025 - 2:00 PM</p>
+						<button class="btn small-btn">Edit</button>
+						<button class="btn small-btn">Delete</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="schedule-main">
+				<h2>Weekly Schedule</h2>
+				<div class="weekly-schedule">
+					<div class="day-column">
+						<h4>Monday</h4>
+						<div class="meeting-card">
+							<p><strong>Project Kickoff</strong></p>
+							<p><span class="time">10:00 AM</span></p>
+						</div>
+						<div class="meeting-card">
+							<p><strong>Team Sync</strong></p>
+							<p><span class="time">2:00 PM</span></p>
+						</div>
+					</div>
+					<div class="day-column">
+						<h4>Tuesday</h4>
+						<div class="meeting-card">
+							<p><strong>Design Review</strong></p>
+							<p><span class="time">11:00 AM</span></p>
+						</div>
+					</div>
+					<div class="day-column">
+						<h4>Wednesday</h4>
+						<div class="meeting-card">
+							<p><strong>Strategy Session</strong></p>
+							<p><span class="time">9:00 AM</span></p>
+						</div>
+					</div>
+					<div class="day-column">
+						<h4>Thursday</h4>
+						<div class="meeting-card">
+							<p><strong>Client Meeting</strong></p>
+							<p><span class="time">1:00 PM</span></p>
+						</div>
+					</div>
+					<div class="day-column">
+						<h4>Friday</h4>
+						<div class="meeting-card">
+							<p><strong>Wrap-Up Meeting</strong></p>
+							<p><span class="time">3:00 PM</span></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Modal for Adding Meeting -->
+				<div id="add-meeting-modal" class="modal">
+					<div class="modal-content">
+						<span class="close-btn" id="close-add-modal"
+							>&times;</span
+						>
+						<h3>Add New Meeting</h3>
+						<form>
+							<div class="input-group">
+								<label for="meeting-name">Meeting Name</label>
+								<input
+									type="text"
+									id="meeting-name"
+									placeholder="Enter meeting name"
+								/>
+							</div>
+							<div class="input-group">
+								<label for="meeting-time">Time</label>
+								<input type="time" id="meeting-time" />
+							</div>
+							<div class="input-group">
+								<label for="meeting-day">Day</label>
+								<select id="meeting-day">
+									<option value="monday">Monday</option>
+									<option value="tuesday">Tuesday</option>
+									<option value="wednesday">Wednesday</option>
+									<option value="thursday">Thursday</option>
+									<option value="friday">Friday</option>
+								</select>
+							</div>
+							<div class="input-group">
+								<label for="meeting-description"
+									>Description</label
+								>
+								<textarea
+									id="meeting-description"
+									placeholder="Enter meeting description"
+								></textarea>
+							</div>
+							<button type="submit" class="btn">
+								Save Meeting
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+
+		<script src="javascript/schedule.js"></script>
+	</body>
+</html>

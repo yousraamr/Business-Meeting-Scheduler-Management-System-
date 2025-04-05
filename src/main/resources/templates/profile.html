@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Profile - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/profile.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Your Project</h1>
+			</div>
+			<div th:replace="fragments/menu :: menu"></div>
+		</header>
+
+		<div class="profile-container">
+			<div class="profile-menu">
+				<ul>
+					<li>
+						<a href="#" id="edit-profile-btn">Edit Profile</a>
+					</li>
+					<li><a href="#" id="history-btn">History</a></li>
+					<li>
+						<a href="#" id="upcoming-meetings-btn"
+							>Upcoming Meetings</a
+						>
+					</li>
+				</ul>
+			</div>
+
+			<div class="profile-content">
+				<h2>Your Profile</h2>
+				<div class="profile-info">
+					<p><strong>Name:</strong> John Doe</p>
+					<p><strong>Email:</strong> john.doe@example.com</p>
+					<p><strong>Member Since:</strong> January 2020</p>
+					<button id="edit-btn" class="btn">Edit Profile</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="edit-profile-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-edit-modal">&times;</span>
+				<h3>Edit Profile</h3>
+				<form>
+					<div class="input-group">
+						<label for="edit-name">Full Name</label>
+						<input type="text" id="edit-name" value="John Doe" />
+					</div>
+					<div class="input-group">
+						<label for="edit-email">Email</label>
+						<input
+							type="email"
+							id="edit-email"
+							value="john.doe@example.com"
+						/>
+					</div>
+					<button type="submit" class="btn">Save Changes</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="history-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-history-modal">&times;</span>
+				<h3>Your History</h3>
+				<div class="history-container">
+					<table class="history-table">
+						<thead>
+							<tr>
+								<th>Activity</th>
+								<th>Date</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Meeting with Client A</td>
+								<td>January 15, 2025</td>
+								<td>
+									<span class="status completed"
+										>Completed</span
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Team Brainstorming Session</td>
+								<td>February 10, 2025</td>
+								<td>
+									<span class="status upcoming"
+										>Upcoming</span
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Project Planning with Team</td>
+								<td>March 5, 2025</td>
+								<td>
+									<span class="status completed"
+										>Completed</span
+									>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div id="upcoming-meetings-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-upcoming-modal">&times;</span>
+				<h3>Upcoming Meetings</h3>
+				<div class="meetings-container">
+					<div class="meeting-card">
+						<h4>Project Review with Client A</h4>
+						<p><strong>Date:</strong> April 1, 2025 - 10:00 AM</p>
+						<p>
+							<strong>Status:</strong>
+							<span class="status upcoming">Upcoming</span>
+						</p>
+					</div>
+					<div class="meeting-card">
+						<h4>Team Meeting</h4>
+						<p><strong>Date:</strong> April 2, 2025 - 2:00 PM</p>
+						<p>
+							<strong>Status:</strong>
+							<span class="status upcoming">Upcoming</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+
+		<script src="javascript/profile.js"></script>
+	</body>
+</html>

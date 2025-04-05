@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/register.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Your Project</h1>
+			</div>
+			<div th:replace="fragments/menu :: menu"></div>
+		</header>
+
+		<section class="register-container">
+			<div class="register-form">
+				<h2>Register</h2>
+				<form action="#" method="POST" id="register-form">
+					<div class="input-group">
+						<label for="name">Full Name</label>
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Enter your full name"
+							required
+						/>
+					</div>
+					<div class="input-group">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Enter your email"
+							required
+						/>
+					</div>
+					<div class="input-group">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Enter your password"
+							required
+						/>
+					</div>
+					<div class="input-group">
+						<label for="confirm-password">Confirm Password</label>
+						<input
+							type="password"
+							id="confirm-password"
+							name="confirm-password"
+							placeholder="Confirm your password"
+							required
+						/>
+					</div>
+					<div class="form-footer">
+						<button type="submit" class="btn">Register</button>
+						<p>
+							Already have an account?
+							<a href="login.html">Login</a>
+						</p>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+	</body>
+</html>

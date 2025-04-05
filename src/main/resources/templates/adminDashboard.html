@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin Dashboard - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link rel="stylesheet" href="css/admin.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Admin Dashboard</h1>
+			</div>
+			<div th:replace="fragments/menu :: menu"></div>
+		</header>
+
+		<div class="dashboard-container">
+			<div class="sidebar">
+				<h3>Admin Menu</h3>
+				<ul>
+					<li><button id="view-users-btn">Manage Users</button></li>
+					<li>
+						<button id="view-meetings-btn">Manage Meetings</button>
+					</li>
+					<li><button id="settings-btn">Settings</button></li>
+				</ul>
+			</div>
+
+			<div class="dashboard-main">
+				<div id="overview-panel" class="panel">
+					<h2>Overview</h2>
+					<p><strong>Total Meetings:</strong> 15</p>
+					<p><strong>Total Users:</strong> 5</p>
+					<button id="view-meetings-btn">View Meetings</button>
+				</div>
+
+				<div id="user-management" class="panel">
+					<h2>User Management</h2>
+					<table class="user-table">
+						<thead>
+							<tr>
+								<th>User ID</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>John Doe</td>
+								<td>johndoe@example.com</td>
+								<td>
+									<button
+										class="btn small-btn"
+										id="edit-user-btn"
+									>
+										Edit
+									</button>
+									<button
+										class="btn small-btn"
+										id="delete-user-btn"
+									>
+										Delete
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="meeting-management" class="panel">
+					<h2>Meeting Management</h2>
+					<table class="meeting-table">
+						<thead>
+							<tr>
+								<th>Meeting Name</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Project Kickoff</td>
+								<td>April 1, 2025</td>
+								<td>10:00 AM</td>
+								<td>
+									<button class="btn small-btn">Edit</button>
+									<button class="btn small-btn">
+										Delete
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="settings-section" class="panel">
+					<h2>Settings</h2>
+					<button class="btn">Change App Settings</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="edit-user-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-edit-user-modal"
+					>&times;</span
+				>
+				<h3>Edit User</h3>
+				<form>
+					<label for="user-name">Name</label>
+					<input
+						type="text"
+						id="user-name"
+						placeholder="Enter user name"
+					/>
+
+					<label for="user-email">Email</label>
+					<input
+						type="email"
+						id="user-email"
+						placeholder="Enter user email"
+					/>
+
+					<button type="submit" class="btn">Save Changes</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="edit-meeting-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-edit-meeting-modal"
+					>&times;</span
+				>
+				<h3>Edit Meeting</h3>
+				<form>
+					<label for="meeting-name">Meeting Name</label>
+					<input
+						type="text"
+						id="meeting-name"
+						placeholder="Enter meeting name"
+					/>
+
+					<label for="meeting-date">Date</label>
+					<input type="date" id="meeting-date" />
+
+					<label for="meeting-time">Time</label>
+					<input type="time" id="meeting-time" />
+
+					<button type="submit" class="btn">Save Changes</button>
+				</form>
+			</div>
+		</div>
+
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+		<script src="javascript/admin.js"></script>
+	</body>
+</html>
