@@ -4,8 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login - Business Meeting Scheduler</title>
-		<link rel="stylesheet" href="css/styles.css" />
-		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="/css/styles.css" />
+		<link rel="stylesheet" href="/css/login.css" />
 	</head>
 	<body>
 		<header>
@@ -18,35 +18,24 @@
 		<section class="login-container">
 			<div class="login-form">
 				<h2>Login</h2>
-				<form action="#" method="POST">
+				<form th:action="@{/auth/login}" th:object="${loginDTO}" method="post">
+					<input type="hidden" name="_csrf" value="${_csrf.token}" />
 					<div class="input-group">
 						<label for="email">Email</label>
-						<input
-							type="email"
-							id="email"
-							name="email"
-							placeholder="Enter your email"
-							required
-						/>
+						<input type="email" id="email" th:field="*{email}" placeholder="Enter your email" required />
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label>
-						<input
-							type="password"
-							id="password"
-							name="password"
-							placeholder="Enter your password"
-							required
-						/>
+						<input type="password" id="password" th:field="*{password}" placeholder="Enter your password" required />
 					</div>
 					<div class="form-footer">
 						<button type="submit" class="btn">Login</button>
 						<p>
-							Don't have an account?
-							<a href="register.html">Register</a>
+							Don't have an account? <a href="/auth/signup">Register</a>
 						</p>
 					</div>
 				</form>
+				
 			</div>
 		</section>
 
