@@ -1,244 +1,298 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard - Business Meeting Scheduler</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/admin.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo">
-        <h1>Admin Dashboard</h1>
-      </div>
-      <div th:replace="fragments/menu :: menu"></div>
-    </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Admin Dashboard - Business Meeting Scheduler</title>
+		<link rel="stylesheet" href="/css/styles.css" />
+		<link rel="stylesheet" href="/css/admin.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<h1>Admin Dashboard</h1>
+			</div>
+			<div th:replace="~{fragments/menu :: menu}"></div>
+		</header>
 
-    <div class="dashboard-container">
-      <div class="sidebar">
-        <h3>Admin Menu</h3>
-        <ul>
-          <li><button id="view-overview-btn">Overview</button></li>
-          <li><button id="view-users-btn">Manage Users</button></li>
-          <li><button id="view-meetings-btn">Manage Meetings</button></li>
-          <li><button id="settings-btn">Settings</button></li>
-        </ul>
-      </div>
+		<div class="dashboard-container">
+			<div class="sidebar">
+				<h3>Admin Menu</h3>
+				<ul>
+					<li><button id="view-overview-btn">Overview</button></li>
+					<li><button id="view-users-btn">Manage Users</button></li>
+					<li>
+						<button id="view-meetings-btn">Manage Meetings</button>
+					</li>
+					<li><button id="settings-btn">Settings</button></li>
+				</ul>
+			</div>
 
-      <div class="dashboard-main">
-        <div id="overview-panel" class="panel">
-          <h2>Overview</h2>
-          <p><strong>Total Meetings:</strong> 15</p>
-          <p><strong>Total Users:</strong> 5</p>
-          <button id="view-meetings-btn">View Meetings</button>
-        </div>
+			<div class="dashboard-main">
+				<div id="overview-panel" class="panel">
+					<h2>Overview</h2>
+					<p id="meetingcount"></p>
+					<p id="usercount"></p>
+					<button id="view-meetings-btn">View Meetings</button>
+				</div>
 
-        <div id="user-management" class="panel">
-          <div class="panel-header">
-            <h2>User Management</h2>
-            <button id="add-user-btn" class="add-btn">Add User</button>
-          </div>
-          <table class="user-table">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="user : ${users}" th:attr="data-id=${user.id}">
-                <td class="id" th:text="${user.id}">1</td>
-                <td class="username" th:text="${user.username}">Username</td>
-                <td class="email" th:text="${user.email}">Email</td>
-                <td class="role" th:text="${user.role}">Role</td>
-                <td>
-                  <button class="btn small-btn edit-user-btn">Edit</button>
-                  <button class="btn small-btn delete-user-btn">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-            
-          </table>
-          <div id="pagination" class="pagination-container">
-            <button class="pagination-btn" id="prev-btn">Prev</button>
-            <button class="pagination-btn" id="next-btn">Next</button>
-          </div>
-        </div>
+				<div id="user-management" class="panel">
+					<div class="panel-header">
+						<h2>User Management</h2>
+						<button id="add-user-btn" class="add-btn">
+							Add User
+						</button>
+					</div>
+					<table class="user-table">
+						<thead>
+							<tr>
+								<th>Username</th>
+								<th>Email</th>
+								<th>Role</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								th:each="user : ${users}"
+								th:attr="data-id=${user.id}"
+							>
+								<td class="id" th:text="${user.id}">1</td>
+								<td class="username" th:text="${user.username}">
+									Username
+								</td>
+								<td class="email" th:text="${user.email}">
+									Email
+								</td>
+								<td class="role" th:text="${user.role}">
+									Role
+								</td>
+								<td>
+									<button class="btn small-btn edit-user-btn">
+										Edit
+									</button>
+									<button
+										class="btn small-btn delete-user-btn"
+									>
+										Delete
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="pagination" class="pagination-container">
+						<button class="pagination-btn" id="prev-btn">
+							Prev
+						</button>
+						<button class="pagination-btn" id="next-btn">
+							Next
+						</button>
+					</div>
+				</div>
 
-        <div id="meeting-management" class="panel">
-          <div class="panel-header">
-            <h2>Meeting Management</h2>
-            <button id="add-meeting-btn" class="add-btn">Add Meeting</button>
-          </div>
-          <table class="meeting-table">
-            <thead>
-              <tr>
-                <th>Meeting Title</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="meeting : ${meetings}" th:attr="data-id=${meeting.id}">
-                <td class="title" th:text="${meeting.title}">Title</td>
-                <td class="date" th:text="${meeting.date}">Date</td>
-                <td class="time" th:text="${meeting.time}">Time</td>
-                <td class="description" th:text="${meeting.description}">Description</td>
-                <td>
-                  <button class="btn small-btn edit-meeting-btn">Edit</button>
-                  <button class="btn small-btn delete-meeting-btn">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="pagination" class="pagination-container">
-            <button class="pagination-btn" id="prev-btn1">Prev</button>
-            <button class="pagination-btn" id="next-btn1">Next</button>
-          </div>
-        </div>
+				<div id="meeting-management" class="panel">
+					<div class="panel-header">
+						<h2>Meeting Management</h2>
+						<button id="add-meeting-btn" class="add-btn">
+							Add Meeting
+						</button>
+					</div>
+					<table class="meeting-table">
+						<thead>
+							<tr>
+								<th>Meeting Title</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>Description</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								th:each="meeting : ${meetings}"
+								th:attr="data-id=${meeting.id}"
+							>
+								<td class="title" th:text="${meeting.title}">
+									Title
+								</td>
+								<td class="date" th:text="${meeting.date}">
+									Date
+								</td>
+								<td class="time" th:text="${meeting.time}">
+									Time
+								</td>
+								<td
+									class="description"
+									th:text="${meeting.description}"
+								>
+									Description
+								</td>
+								<td>
+									<button
+										class="btn small-btn edit-meeting-btn"
+									>
+										Edit
+									</button>
+									<button
+										class="btn small-btn delete-meeting-btn"
+									>
+										Delete
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="pagination" class="pagination-container">
+						<button class="pagination-btn" id="prev-btn1">
+							Prev
+						</button>
+						<button class="pagination-btn" id="next-btn1">
+							Next
+						</button>
+					</div>
+				</div>
 
-        <div id="settings-section" class="panel">
-          <h2>Settings</h2>
-          <button class="btn">Change App Settings</button>
-        </div>
-      </div>
-    </div>
+				<div id="settings-section" class="panel">
+					<h2>Settings</h2>
+					<button class="btn">Change App Settings</button>
+				</div>
+			</div>
+		</div>
 
-    <!-- Modals -->
-    <div id="add-user-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" id="close-add-user-modal">&times;</span>
-        <h3>Add New User</h3>
-        <form id="add-user-form">
-          <label for="user-username">Username</label>
-          <input
-            type="text"
-            id="user-username"
-            name="username"
-            placeholder="Enter username"
-            required
-          />
-        
-          <label for="user-email">Email</label>
-          <input
-            type="email"
-            id="user-email"
-            name="email"
-            placeholder="Enter user email"
-            required
-          />
-        
-          <label for="user-password">Password</label>
-          <input
-            type="password"
-            id="user-password"
-            name="password"
-            placeholder="Enter password"
-            required
-          />
-        
-          <label for="user-role">Role</label>
-          <select id="user-role" name="role" required>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-          </select>
-        
-          <button type="submit" class="btn">Add User</button>
-        </form>
-        
-      </div>
-    </div>
+		<!-- Modals -->
+		<div id="add-user-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-add-user-modal">&times;</span>
+				<h3>Add New User</h3>
+				<form id="add-user-form">
+					<label for="user-username">Username</label>
+					<input
+						type="text"
+						id="user-username"
+						name="username"
+						placeholder="Enter username"
+						required
+					/>
 
-    <div id="edit-user-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" id="close-edit-user-modal">&times;</span>
-        <h3>Edit User</h3>
-        <form id="edit-user-form">
-          <input type="hidden" id="edit-user-id" name="id" />
-        
-          <label for="edit-user-username">Username</label>
-          <input
-            type="text"
-            id="edit-user-username"
-            name="username"
-            placeholder="Enter username"
-            required
-          />
-        
-          <label for="edit-user-email">Email</label>
-          <input
-            type="email"
-            id="edit-user-email"
-            name="email"
-            placeholder="Enter email"
-            required
-          />
-        
-          <label for="edit-user-role">Role</label>
-          <select id="edit-user-role" name="role" required>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-          </select>
-        
-          <label for="edit-user-password">Password</label>
-          <input
-            type="password"
-            id="edit-user-password"
-            name="password"
-            placeholder="Enter new password (optional)"
-          />
-        
-          <button type="submit" class="btn">Save Changes</button>
-        </form>
-        
-      </div>
-    </div>
+					<label for="user-email">Email</label>
+					<input
+						type="email"
+						id="user-email"
+						name="email"
+						placeholder="Enter user email"
+						required
+					/>
 
-    <div id="add-meeting-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" id="close-add-meeting-modal">&times;</span>
-        <h3>Add New Meeting</h3>
-        <form>
-          <label for="meeting-title">Title</label>
-          <input type="text" id="meeting-title" required />
-          <label for="meeting-date">Date</label>
-          <input type="date" id="meeting-date" required />
-          <label for="meeting-time">Time</label>
-          <input type="time" id="meeting-time" required />
-          <label for="meeting-description">Description</label>
-          <textarea id="meeting-description" required></textarea>
-          <button type="submit" class="btn">Add Meeting</button>
-        </form>
-      </div>
-    </div>
+					<label for="user-password">Password</label>
+					<input
+						type="password"
+						id="user-password"
+						name="password"
+						placeholder="Enter password"
+						required
+					/>
 
-    <div id="edit-meeting-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" id="close-edit-meeting-modal">&times;</span>
-        <h3>Edit Meeting</h3>
-        <form>
-          <input type="hidden" id="edit-meeting-id" />
-          <label for="edit-meeting-title">Title</label>
-          <input type="text" id="edit-meeting-title" required />
-          <label for="edit-meeting-date">Date</label>
-          <input type="date" id="edit-meeting-date" required />
-          <label for="edit-meeting-time">Time</label>
-          <input type="time" id="edit-meeting-time" required />
-          <label for="edit-meeting-description">Description</label>
-          <textarea id="edit-meeting-description" required></textarea>
-          <button type="submit" class="btn">Save Changes</button>
-        </form>
-      </div>
-    </div>
+					<label for="user-role">Role</label>
+					<select id="user-role" name="role" required>
+						<option value="admin">Admin</option>
+						<option value="user">User</option>
+					</select>
 
-    <footer>
-      <p>&copy; 2025 Your Company. All rights reserved.</p>
-    </footer>
-    <script src="/javascript/admin.js"></script>
-  </body>
+					<button type="submit" class="btn">Add User</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="edit-user-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-edit-user-modal"
+					>&times;</span
+				>
+				<h3>Edit User</h3>
+				<form id="edit-user-form">
+					<input type="hidden" id="edit-user-id" name="id" />
+
+					<label for="edit-user-username">Username</label>
+					<input
+						type="text"
+						id="edit-user-username"
+						name="username"
+						placeholder="Enter username"
+						required
+					/>
+
+					<label for="edit-user-email">Email</label>
+					<input
+						type="email"
+						id="edit-user-email"
+						name="email"
+						placeholder="Enter email"
+						required
+					/>
+
+					<label for="edit-user-role">Role</label>
+					<select id="edit-user-role" name="role" required>
+						<option value="admin">Admin</option>
+						<option value="user">User</option>
+					</select>
+
+					<label for="edit-user-password">Password</label>
+					<input
+						type="password"
+						id="edit-user-password"
+						name="password"
+						placeholder="Enter new password (optional)"
+					/>
+
+					<button type="submit" class="btn">Save Changes</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="add-meeting-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-add-meeting-modal"
+					>&times;</span
+				>
+				<h3>Add New Meeting</h3>
+				<form>
+					<label for="meeting-title">Title</label>
+					<input type="text" id="meeting-title" required />
+					<label for="meeting-date">Date</label>
+					<input type="date" id="meeting-date" required />
+					<label for="meeting-time">Time</label>
+					<input type="time" id="meeting-time" required />
+					<label for="meeting-description">Description</label>
+					<textarea id="meeting-description" required></textarea>
+					<button type="submit" class="btn">Add Meeting</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="edit-meeting-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-btn" id="close-edit-meeting-modal"
+					>&times;</span
+				>
+				<h3>Edit Meeting</h3>
+				<form>
+					<input type="hidden" id="edit-meeting-id" />
+					<label for="edit-meeting-title">Title</label>
+					<input type="text" id="edit-meeting-title" required />
+					<label for="edit-meeting-date">Date</label>
+					<input type="date" id="edit-meeting-date" required />
+					<label for="edit-meeting-time">Time</label>
+					<input type="time" id="edit-meeting-time" required />
+					<label for="edit-meeting-description">Description</label>
+					<textarea id="edit-meeting-description" required></textarea>
+					<button type="submit" class="btn">Save Changes</button>
+				</form>
+			</div>
+		</div>
+
+		<footer>
+			<p>&copy; 2025 Your Company. All rights reserved.</p>
+		</footer>
+		<script src="/javascript/admin.js"></script>
+	</body>
 </html>
