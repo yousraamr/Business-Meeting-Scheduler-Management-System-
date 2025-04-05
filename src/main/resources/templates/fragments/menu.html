@@ -1,31 +1,30 @@
-<!-- src/main/resources/templates/fragments/menu.html -->
-
-<!-- <nav>
-	<ul>
+<nav th:fragment="menu">
+	<ul class="main-menu">
+		<!-- Home Link (Always visible) -->
 		<li><a href="/">Home</a></li>
-		<li><a href="/meetings">Meetings</a></li>
-		<li><a href="/profile">Profile</a></li>
 
-		Dynamic logout button for authenticated users
-		<li th:if="${userLoggedIn}"><a href="/logout">Logout</a></li>
+		<!-- Links visible only when the user is logged in -->
+		<li th:if="${isLoggedIn}">
+			<a href="/profile">Profile</a>
+		</li>
+		<li th:if="${isLoggedIn}">
+			<a href="/schedule">Schedule</a>
+		</li>
+		<li th:if="${isLoggedIn}">
+			<a href="/auth/logout">Logout</a>
+		</li>
 
-		Links for guests (not logged in)
-		<li th:unless="${userLoggedIn}"><a href="/login">Login</a></li>
-		<li th:unless="${userLoggedIn}"><a href="/register">Register</a></li>
-
-		Admin-specific links
-		<li th:if="${userRole == 'ADMIN'}">
+		<!-- Links visible only when the user is an admin -->
+		<li th:if="${isAdmin}">
 			<a href="/admin/dashboard">Admin Dashboard</a>
 		</li>
-	</ul>
-</nav> -->
-<nav th:fragment="menu">
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/meetings">Meetings</a></li>
-		<li><a href="/profile">Profile</a></li>
-		<li><a href="/schedule">Schedule</a></li>
-		<li><a href="/auth/logout">Logout</a></li> 
-		<li><a href="/admin/dashboard">Admin Dashboard</a></li>
+
+		<!-- Links visible only when the user is not logged in -->
+		<li th:if="${isLoggedIn == false}">
+			<a href="/auth/login">Login</a>
+		</li>
+		<li th:if="${isLoggedIn == false}">
+			<a href="/auth/signup">Register</a>
+		</li>
 	</ul>
 </nav>
