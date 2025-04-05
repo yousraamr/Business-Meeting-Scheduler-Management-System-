@@ -110,10 +110,11 @@ header nav ul li a:hover {
 	transition: background-color 0.3s ease, transform 0.3s ease,
 		box-shadow 0.3s ease;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	z-index: 1000;
 }
 
 .cta-button:hover {
-	background-color: #a78d78;
+	background-color: #6b7978;
 	color: white;
 	transform: scale(1.1);
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);

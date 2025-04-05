@@ -38,7 +38,7 @@
 }
 
 .sidebar ul li button:hover {
-	background-color: #a78d78;
+	background-color: #6b7978;
 }
 
 .dashboard-main {
@@ -48,6 +48,16 @@
 	border-radius: 10px;
 }
 
+.add-btn {
+	color: white;
+	padding: 10px 20px;
+	font-size: 1rem;
+	border-radius: 25px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+	margin-left: 0;
+}
 .panel {
 	background-color: #333333;
 	padding: 20px;
@@ -96,10 +106,9 @@ button.small-btn {
 }
 
 button.small-btn:hover {
-	background-color: #a78d78;
+	background-color: #6b7978;
 	color: white;
 }
-
 .modal {
 	display: none;
 	position: fixed;
@@ -108,7 +117,9 @@ button.small-btn:hover {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.4);
+	justify-content: center;
+	align-items: center;
 }
 
 .modal-content {
@@ -118,27 +129,6 @@ button.small-btn:hover {
 	border-radius: 15px;
 	width: 50%;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.close-btn {
-	color: #f5ebfa;
-	font-size: 28px;
-	font-weight: bold;
-	float: right;
-	cursor: pointer;
-}
-
-.close-btn:hover {
-	color: #a78d78;
-}
-.modal-content {
-	background-color: #333333;
-	margin: 15% auto;
-	padding: 30px;
-	border-radius: 15px;
-	width: 50%;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-	transition: transform 0.3s ease;
 }
 
 .close-btn {
@@ -151,7 +141,7 @@ button.small-btn:hover {
 }
 
 .close-btn:hover {
-	color: #a78d78;
+	color: #6b7978;
 }
 
 .modal-content label {
@@ -184,14 +174,12 @@ button.small-btn:hover {
 	box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
-/* Hover effect for input fields */
 .modal-content input:hover,
 .modal-content select:hover,
 .modal-content textarea:hover {
-	border-color: #a78d78;
+	border-color: #6b7978;
 }
 
-/* Button Styling */
 .modal-content button {
 	background-color: #333333;
 	color: #f5ebfa;
@@ -206,21 +194,10 @@ button.small-btn:hover {
 }
 
 .modal-content button:hover {
-	background-color: #a78d78;
+	background-color: #6b7978;
 	transform: scale(1.05);
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 	border: 2px solid #f5ebfa;
-}
-
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
 }
 
 button {
@@ -238,10 +215,77 @@ button {
 }
 
 button:hover {
-	background-color: #a78d78;
+	background-color: #6b7978;
 	transform: scale(1.05);
 	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 	border: 2px solid #f5ebfa;
+}
+
+.user-table {
+	width: 100%;
+	margin: 20px 0;
+	border-collapse: collapse;
+	background-color: #333333;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.user-table th,
+.user-table td {
+	padding: 15px;
+	border-bottom: 1px solid #444444;
+	color: #f5ebfa;
+}
+
+.panel-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.panel-header h2 {
+	flex: 1;
+	text-align: center;
+	margin: 0;
+}
+
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.pagination-btn {
+	background-color: #333333;
+	color: white;
+	padding: 10px 15px;
+	font-size: 1rem;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin: 0 10px;
+}
+
+.pagination-btn:hover {
+	background-color: #6b7978;
+	transform: scale(1.05);
+}
+.meeting-table {
+	width: 100%;
+	margin: 20px 0;
+	border-collapse: collapse;
+	background-color: #333333;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.meeting-table th,
+.meeting-table td {
+	padding: 15px;
+	border-bottom: 1px solid #444444;
+	color: #f5ebfa;
 }
 
 @media (max-width: 768px) {
