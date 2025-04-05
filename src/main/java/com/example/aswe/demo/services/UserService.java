@@ -63,4 +63,25 @@ public class UserService {
     public User getUserDetails(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
+       public User getUserById(Integer userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public void updateUserProfile(User updatedUser) {
+        userRepository.save(updatedUser);
+    }
+
+    public void changePassword(Integer userId, String currentPassword, String newPassword) {
+        User user = getUserById(userId);
+        
+        // Check if the current password matches
+        if (passwordEncoder.matches(currentPassword, user.getPassword())) {
+            // Set the new password (hashed)
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+
+        } else {
+            throw new RuntimeException("Current password is incorrect");
+        }
+    }
 }
