@@ -22,9 +22,9 @@
 					
 					<!-- Username -->
 					<div class="input-group">
-						<label for="name">Userame</label>
-						<input type="text" th:field="*{username}" id="name" placeholder="Userame" required />
-						<div th:if="${#fields.hasErrors('username')}" style="color: red;">
+						<label for="name">Username</label>
+						<input type="text" th:field="*{username}" id="name" placeholder="Username" required />
+						<div th:if="${#fields.hasErrors('username')}" style="color: rgb(209, 93, 93);">
 							<p th:errors="*{username}">Full name error</p>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 					<div class="input-group">
 						<label for="email">Email</label>
 						<input type="email" th:field="*{email}" id="email" placeholder="Enter your email" required />
-						<div th:if="${#fields.hasErrors('email')}" style="color: red;">
+						<div th:if="${#fields.hasErrors('email')}" style="color:  rgb(209, 93, 93);">
 							<p th:errors="*{email}">Email error</p>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 					<div class="input-group">
 						<label for="password">Password</label>
 						<input type="password" th:field="*{password}" id="password" placeholder="Enter your password" required />
-						<div th:if="${#fields.hasErrors('password')}" style="color: red;">
+						<div th:if="${#fields.hasErrors('password')}" style="color:  rgb(209, 93, 93);">
 							<p th:errors="*{password}">Password error</p>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 					<div class="input-group">
 						<label for="confirm-password">Confirm Password</label>
 						<input type="password" th:field="*{cpassword}" id="confirm-password" placeholder="Confirm your password" required />
-						<div th:if="${#fields.hasErrors('cpassword')}" style="color: red;">
+						<div th:if="${#fields.hasErrors('cpassword')}" style="color:  rgb(209, 93, 93);">
 							<p th:errors="*{cpassword}">Confirm password error</p>
 						</div>
 					</div>

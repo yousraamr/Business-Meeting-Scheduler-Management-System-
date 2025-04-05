@@ -12,124 +12,194 @@
 			<div class="logo">
 				<h1>Your Project</h1>
 			</div>
-			<div th:replace="fragments/menu :: menu"></div>
+			<div th:replace="~{fragments/menu :: menu}"></div>
 		</header>
 
 		<div class="profile-container">
 			<div class="profile-menu">
+				<h3>Profile Menu</h3>
 				<ul>
+					<li><button id="view-overview-btn">Overview</button></li>
 					<li>
-						<a href="#" id="edit-profile-btn">Edit Profile</a>
+						<button id="view-profile-btn">Manage Profile</button>
 					</li>
-					<li><a href="#" id="history-btn">History</a></li>
 					<li>
-						<a href="#" id="upcoming-meetings-btn"
-							>Upcoming Meetings</a
-						>
+						<button id="change-password-btn">
+							Change Password
+						</button>
 					</li>
+					<li><button id="meetings-btn">Meetings</button></li>
 				</ul>
 			</div>
 
 			<div class="profile-content">
 				<h2>Your Profile</h2>
-				<div class="profile-info">
-					<p><strong>Name:</strong> John Doe</p>
-					<p><strong>Email:</strong> john.doe@example.com</p>
-					<p><strong>Member Since:</strong> January 2020</p>
-					<button id="edit-btn" class="btn">Edit Profile</button>
-				</div>
-			</div>
-		</div>
+				<div class="profile-info" id="overview-section">
+					<p>
+						<strong>Name:</strong>
+						<span th:text="${user.username}"></span>
+					</p>
+					<p>
+						<strong>Email:</strong>
+						<span th:text="${user.email}"></span>
+					</p>
 
-		<div id="edit-profile-modal" class="modal">
-			<div class="modal-content">
-				<span class="close-btn" id="close-edit-modal">&times;</span>
-				<h3>Edit Profile</h3>
-				<form>
-					<div class="input-group">
-						<label for="edit-name">Full Name</label>
-						<input type="text" id="edit-name" value="John Doe" />
-					</div>
-					<div class="input-group">
-						<label for="edit-email">Email</label>
+					<button
+						id="edit-btn"
+						class="btn"
+						onclick="showEditProfile()"
+					>
+						Edit Profile
+					</button>
+					<button
+						id="change-password-btn"
+						class="btn"
+						onclick="showChangePassword()"
+					>
+						Change Password
+					</button>
+				</div>
+
+				<div
+					id="manage-profile-section"
+					class="section"
+					style="display: none"
+				>
+					<h2>Edit Profile</h2>
+					<form
+						action="/profile/update"
+						method="POST"
+						onsubmit="return validateProfileForm()"
+					>
+						<label for="profile-username">Name</label>
+						<input
+							type="text"
+							id="profile-username"
+							name="username"
+							placeholder="Enter your name"
+							th:value="${user.username}"
+						/>
+
+						<label for="profile-email">Email</label>
 						<input
 							type="email"
-							id="edit-email"
-							value="john.doe@example.com"
+							id="profile-email"
+							name="email"
+							placeholder="Enter your email"
+							th:value="${user.email}"
 						/>
-					</div>
-					<button type="submit" class="btn">Save Changes</button>
-				</form>
-			</div>
-		</div>
 
-		<div id="history-modal" class="modal">
-			<div class="modal-content">
-				<span class="close-btn" id="close-history-modal">&times;</span>
-				<h3>Your History</h3>
-				<div class="history-container">
-					<table class="history-table">
-						<thead>
-							<tr>
-								<th>Activity</th>
-								<th>Date</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Meeting with Client A</td>
-								<td>January 15, 2025</td>
-								<td>
-									<span class="status completed"
-										>Completed</span
-									>
-								</td>
-							</tr>
-							<tr>
-								<td>Team Brainstorming Session</td>
-								<td>February 10, 2025</td>
-								<td>
-									<span class="status upcoming"
-										>Upcoming</span
-									>
-								</td>
-							</tr>
-							<tr>
-								<td>Project Planning with Team</td>
-								<td>March 5, 2025</td>
-								<td>
-									<span class="status completed"
-										>Completed</span
-									>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+						<button type="submit" class="btn">Save Changes</button>
+					</form>
 				</div>
-			</div>
-		</div>
 
-		<div id="upcoming-meetings-modal" class="modal">
-			<div class="modal-content">
-				<span class="close-btn" id="close-upcoming-modal">&times;</span>
-				<h3>Upcoming Meetings</h3>
-				<div class="meetings-container">
-					<div class="meeting-card">
-						<h4>Project Review with Client A</h4>
-						<p><strong>Date:</strong> April 1, 2025 - 10:00 AM</p>
-						<p>
-							<strong>Status:</strong>
-							<span class="status upcoming">Upcoming</span>
-						</p>
-					</div>
-					<div class="meeting-card">
-						<h4>Team Meeting</h4>
-						<p><strong>Date:</strong> April 2, 2025 - 2:00 PM</p>
-						<p>
-							<strong>Status:</strong>
-							<span class="status upcoming">Upcoming</span>
-						</p>
+				<!-- Change Password Section -->
+				<div
+					id="change-password-section"
+					class="section"
+					style="display: none"
+				>
+					<h2>Change Password</h2>
+					<form
+						action="/profile/change-password"
+						method="POST"
+						onsubmit="return validatePasswordForm()"
+					>
+						<label for="current-password">Current Password</label>
+						<input
+							type="password"
+							id="current-password"
+							name="currentPassword"
+							placeholder="Current Password"
+						/>
+
+						<label for="new-password">New Password</label>
+						<input
+							type="password"
+							id="new-password"
+							name="newPassword"
+							placeholder="New Password"
+						/>
+
+						<button type="submit" class="btn">
+							Change Password
+						</button>
+					</form>
+
+				</div>
+				<div
+					id="meetings-section"
+					class="section"
+					style="display: none"
+				>
+					<h2>Your Upcoming Meetings</h2>
+
+					<!-- Schedule Layout -->
+					<div class="schedule-layout">
+						<div class="schedule-column">
+							<h4>April 1, 2025</h4>
+							<div class="meeting-card">
+								<h5>Project Kickoff</h5>
+								<p><strong>Time:</strong> 10:00 AM</p>
+								<p>
+									<strong>Description:</strong> Discuss the
+									project goals, timeline, and resources for
+									the upcoming project.
+								</p>
+							</div>
+						</div>
+
+						<div class="schedule-column">
+							<h4>April 2, 2025</h4>
+							<div class="meeting-card">
+								<h5>Team Sync</h5>
+								<p><strong>Time:</strong> 2:00 PM</p>
+								<p>
+									<strong>Description:</strong> Monthly team
+									synchronization to review the progress and
+									set new objectives.
+								</p>
+							</div>
+						</div>
+
+						<div class="schedule-column">
+							<h4>April 5, 2025</h4>
+							<div class="meeting-card">
+								<h5>Client Presentation</h5>
+								<p><strong>Time:</strong> 9:00 AM</p>
+								<p>
+									<strong>Description:</strong> Presenting the
+									final deliverables and updates to the client
+									team.
+								</p>
+							</div>
+						</div>
+
+						<div class="schedule-column">
+							<h4>April 10, 2025</h4>
+							<div class="meeting-card">
+								<h5>Budget Review</h5>
+								<p><strong>Time:</strong> 1:00 PM</p>
+								<p>
+									<strong>Description:</strong> Review the
+									budget allocations and necessary adjustments
+									for the next quarter.
+								</p>
+							</div>
+						</div>
+
+						<div class="schedule-column">
+							<h4>April 12, 2025</h4>
+							<div class="meeting-card">
+								<h5>Product Launch Strategy</h5>
+								<p><strong>Time:</strong> 3:00 PM</p>
+								<p>
+									<strong>Description:</strong> Discussing the
+									strategies for the upcoming product launch,
+									including marketing and logistics.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
